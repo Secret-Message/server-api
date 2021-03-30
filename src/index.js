@@ -9,6 +9,7 @@
                                                             /____/
 */
 // ascii ^
+//testowa zmiana dla gita
 
 require('dotenv').config();
 
