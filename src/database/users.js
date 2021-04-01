@@ -3,6 +3,7 @@ const data = require('./database');
 const stringUtils = require('../lib/utils/stringUtils');
 const { log } = require('../lib/logs');
 const chalk = require('chalk');
+const dmDB = require('./dm');
 
 const userDB = {
     doExist: (firebaseUID) => {
@@ -23,6 +24,7 @@ const userDB = {
         user.invitations.splice(user.invitations.indexOf(from), 1);
         friend.friends.push(uid);
         user.friends.push(from);
+        dmDB.creteDM({ user, friend });//creating dm
     },
     declineInvitation: (uid, from) => {
         const user = userDB.getByUID(uid);

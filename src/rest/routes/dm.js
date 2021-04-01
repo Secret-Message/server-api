@@ -1,30 +1,52 @@
 // Secret Message project © 2021 is licensed under CC BY-NC-ND 4.0
 const express = require('express');
+const userLib = require('../../lib/user');
 const router = express.Router();
+const messageDB = require('../../database/message');
+const dmDB = require('../../database/dm');
+const { parseMessageFilter } = require('../../lib/filters/message');
 
-router.delete('/message', (req, res) => {
+// DELETE /dm/message
+router.delete('/message/:id', user.userLib.verifyToken, (req, res) => { // delete message
     const id = req.params.id;
-    const { token } = req.body;
+    const { author } = req.body;
+    const deletingstatus = messageDB.deleteMessage(id, author);
+    switch (deletingstatus) {
+        case 0: res.status(404).json({ status: 'error', error: 'This message doesn\'t exist' }); break;
+        case 1: res.status(403).json({ status: 'erorr', error: 'You aren\'t author of message you want to delete' }); break;
+        default: res.status(200).json({ ststus: 'ok', error: 'id of messeage you deleted' + id }); break;
+    }
 });
-router.get('/message', (req, res) => {
+router.get('/message', userLib.verifyToken, (req, res) => { // get message
     const id = req.params.id;
-    const { filter, token } = req.body;
+    const userUID = req.decoded.uid;
+    const { filter, dmChannel } = req.body;
+    // TODO: check if user has access to this channel
+    const filterF = parseMessageFilter(filter);
+    const messages = dmDB.getAllMessages(dmChannel);
+    res.status(200).json({
+        status: 'ok', messages: messages.filter(msg => filterF(msg)).map(msg => {
+            const message = messageDB.getById(msg);
+            return {
+                author: message.author,
+                content: message.content,
+                timestamp: message.timestamp,
+                answer: message.answer,
+                reactions: message.reactions,
+            };
+        })
+    });
 });
 
-router.post('/message', (req, res) => {
-    const id = req.params.id;
-    const { token, content, response } = req.body; // tp macie jakiś pomysł jak zaimplementować to jwt?
+router.post('/message', userLib.verifyToken, (req, res) => { // create message
+    const { author, content, response } = req.body;
+    messageDB.createMessage(author, content, answer);
+
 });
 
-// ja nie będę mógł gadać przez następne 30 minut (może z małymi wyjątkami się odezwę)
-// to wy piszcie (jeśli chcecie) - chcemy xD
-// to trzeba wymyśleć jak mamy zaimplementować to jwt
-// można zrobić, że jwt jest zamiast uid oraz tokenu w requestach
-// tak xD
-
-router.put('/message', (req, res) => {
+router.put('/message', userLib.verifyToken, (req, res) => { // update message
     const id = req.params.id;
-    const { token, content } = req.body;
+    const { content } = req.body;
 });
 
 module.exports = router;

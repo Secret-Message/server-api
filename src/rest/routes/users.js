@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const userLib = require('../../lib/user');
 const userDB = require('../../database/users');
+const dmDB = require('../../database/dm');
 const { websocket } = require('../../index');
 
 const { socketMap } = websocket;
