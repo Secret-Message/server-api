@@ -22,7 +22,7 @@ const MessageFilterOptions = {
         return (message.author == uid);
     }
 };
-const messageDB = require('../database/message');
+const messageDB = require('../../database/message');
 const MessageFilter = new Filter(key => messageDB.getById(key), MessageFilterOptions);
 function parseMessageFilter(filter) {
     return MessageFilter.parse(filter);

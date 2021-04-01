@@ -45,6 +45,9 @@ const verifyToken = (req, res, next) => {
                 res.status(401).json({ status: 'error', msg: 'Unauthorized' })
             }
             if (decoded) {
+                if (!userDB.doExist(decoded.uid)) {
+                    return;
+                }
                 log(chalk.green("user token correct"));
                 req.decoded = decoded
                 next()

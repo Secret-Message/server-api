@@ -4,6 +4,8 @@ const stringUtils = require('../lib/utils/stringUtils');
 const { log } = require('../lib/logs');
 const chalk = require('chalk');
 const dmDB = require('./dm');
+const sha512 = require('crypto-js/sha512');
+const { socketMap } = require('../websocket/server');
 
 const userDB = {
     doExist: (firebaseUID) => {
@@ -24,11 +26,28 @@ const userDB = {
         user.invitations.splice(user.invitations.indexOf(from), 1);
         friend.friends.push(uid);
         user.friends.push(from);
-        dmDB.creteDM({ user, friend });//creating dm
+        const dmID = dmDB.createDM(user, friend); //creating dm
+        log(chalk.blue('new DM channel made: ' + dmID));
+        user.DMs.push(dmID);
+        friend.DMs.push(dmID);
+
+        if (uid in socketMap) {
+            socketMap[uid].join('dm:' + dmID);
+        }
+        if (from in socketMap) {
+            socketMap[from].join('dm:' + dmID);
+        }
     },
     declineInvitation: (uid, from) => {
         const user = userDB.getByUID(uid);
         user.invitations.splice(user.invitations.indexOf(from), 1);
+    },
+
+    getFriendDM: (uid, friendID) => {
+        if (data.users[uid].friends.includes(friendID)) {
+            return data.users[uid][friendID];
+        }
+        return -1;
     },
 
     addUser: (userData) => {
@@ -38,17 +57,16 @@ const userDB = {
             avatarURL: userData.picture,
             groups: [], //dummy object (js doesn't have ref's)
             friends: [], //dummy object (js doesn't have ref's)
-            chats: [], //dummy object (js doesn't have ref's)
-            invitation: stringUtils.toHex(userData.email), // maybe switch to sha3
+            DMs: [], //dummy object (js doesn't have ref's)
+            invitation: `${userData.name.replace(/\s+/g, "")}@${sha512().toString().substr(0, 6)}`,
             invitations: [], // list of invitations 
             status: 'offline'
         };
-        console.log(data);
     },
 
     setStatus: (uid, status, socket) => {
         try {
-            log(chalk.yellow('user status changed: ') + chalk.yellow.bold(`${uid} -> ${status}`));
+            log(chalk.yellow('user status changed: ') + chalk.yellow.bold(`${uid} -> ${status} `));
             data.users[uid].status = status;
         } catch {
             socket.disconnect(true);
@@ -62,6 +80,20 @@ const userDB = {
 
     removeUser: (firebaseUID) => {
         data.users.delete(firebaseUID);
+    },
+
+    getAllUserDMs: (uid) => {
+        if (uid in data.users) {
+            return data.users[uid].DMs;
+        }
+        return [];
+    },
+
+    hasAccessToDM: (uid, dmId) => {
+        if (uid in data.users) {
+            return data.users[uid].DMs.includes(parseInt(dmId));
+        }
+        return false;
     },
 
 }

@@ -5,9 +5,11 @@ const router = express.Router();
 const messageDB = require('../../database/message');
 const dmDB = require('../../database/dm');
 const { parseMessageFilter } = require('../../lib/filters/message');
+const userDB = require('../../database/users');
+const { io } = require('../../websocket/server');
 
 // DELETE /dm/message
-router.delete('/message/:id', user.userLib.verifyToken, (req, res) => { // delete message
+router.delete('/message/:id', userLib.verifyToken, (req, res) => { // delete message
     const id = req.params.id;
     const { author } = req.body;
     const deletingstatus = messageDB.deleteMessage(id, author);
@@ -17,18 +19,25 @@ router.delete('/message/:id', user.userLib.verifyToken, (req, res) => { // delet
         default: res.status(200).json({ ststus: 'ok', error: 'id of messeage you deleted' + id }); break;
     }
 });
-router.get('/message', userLib.verifyToken, (req, res) => { // get message
-    const id = req.params.id;
+router.get('/message/:id', userLib.verifyToken, (req, res) => { // get message
     const userUID = req.decoded.uid;
-    const { filter, dmChannel } = req.body;
-    // TODO: check if user has access to this channel
+    const dmChannel = req.params.id;
+    const filter = req.query.filter;
+    if (!userDB.hasAccessToDM(userUID, dmChannel)) {
+        res.status(403).json({ status: 'error', error: 'You don\'t have access to this DM channel' })
+        return;
+    };
     const filterF = parseMessageFilter(filter);
     const messages = dmDB.getAllMessages(dmChannel);
     res.status(200).json({
         status: 'ok', messages: messages.filter(msg => filterF(msg)).map(msg => {
             const message = messageDB.getById(msg);
+            const author = userDB.getByUID(message.author);
             return {
-                author: message.author,
+                author: {
+                    name: author.name,
+                    avatar: author.avatarURL
+                },
                 content: message.content,
                 timestamp: message.timestamp,
                 answer: message.answer,
@@ -39,14 +48,38 @@ router.get('/message', userLib.verifyToken, (req, res) => { // get message
 });
 
 router.post('/message', userLib.verifyToken, (req, res) => { // create message
-    const { author, content, response } = req.body;
-    messageDB.createMessage(author, content, answer);
-
+    const { content, response, channel } = req.body;
+    const author = req.decoded.uid;
+    if (!userDB.hasAccessToDM(author, channel)) {
+        res.status(403).json({ status: 'error', error: 'You don\'t have access to this DM channel' })
+        return;
+    };
+    const messageID = messageDB.createMessage(author, content, response);
+    dmDB.addMessage(channel, messageID);
+    const authorUser = userDB.getByUID(author);
+    io.to('dm:' + channel).emit('message', {
+        author: {
+            name: authorUser.name,
+            avatar: authorUser.avatarURL,
+        },
+        content: content,
+        response: response,
+        channel: channel,
+    });
+    res.status(200).json({ status: 'ok' });
 });
-
 router.put('/message', userLib.verifyToken, (req, res) => { // update message
     const id = req.params.id;
     const { content } = req.body;
+    res.status(501).json({ status: 'error', error: 'not implemented yet, BRUUUH' });
 });
+
+router.get('/access/:id', userLib.verifyToken, (req, res) => {
+    if (userDB.hasAccessToDM(req.decoded.uid, req.params.id)) {
+        res.status(200).json({ status: 'ok' });
+    } else {
+        res.status(403).json({ status: 'error', error: "NO ACCESS, no i co pajacu? taki kozak jesteś? i co? może myślałes że ci wybacze? nie, nie wydarzy się to ziomeczku. A teraz żegnam! NAUUURA" });
+    }
+})
 
 module.exports = router;

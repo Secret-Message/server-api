@@ -6,6 +6,7 @@ module.exports.Filter = class Filter {
     }
 
     parse(filter) {
+        if (filter == '' || filter == undefined) return (data) => { return true; };
         var filters = filter.split(';');
 
         var stringF = `return (`;

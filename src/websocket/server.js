@@ -1,11 +1,11 @@
 // Secret Message project © 2021 is licensed under CC BY-NC-ND 4.0
-
+var userDB;
 const httpServer = require('http').createServer();
 const jwt = require('jsonwebtoken');
-const userDB = require('../database/users');
 const chalk = require('chalk');
 const cookie = require('cookie');
 const { log } = require('../lib/logs');
+
 
 const io = require('socket.io')(httpServer, {
     cors: {
@@ -57,18 +57,30 @@ io.on('connection', socket => {
             return;
         }
 
+
+
         // disable timeout
         clearTimeout(timeout);
 
         // =====< STATUS >=====
         const uid = user_data.uid;
-        // set status to online :>
-        userDB.setStatus(uid, "online", socket)
-        // set status to offline
+
         socket.on('disconnect', (reason) => {
             userDB.setStatus(uid, "offline", socket);
             delete socketMap[uid];
         });
+        if (uid in socketMap) {
+            socket.disconnect(true);
+            return;
+        }
+
+        for (let dm of userDB.getAllUserDMs(uid)) {
+            socket.join('dm:' + dm);
+        }
+
+        // set status to online :>
+        userDB.setStatus(uid, "online", socket)
+        // set status to offline
 
         // add user to socket map
         socketMap[uid] = socket;
@@ -76,8 +88,9 @@ io.on('connection', socket => {
     });
 });
 
+module.exports = { socketMap: socketMap, io: io };
+
 httpServer.listen(8080, () => {
+    userDB = require('../database/users');
     console.log(chalk.green.bold("Websocket listening on port 8080"))
 });
-
-module.exports = { socketMap: socketMap };

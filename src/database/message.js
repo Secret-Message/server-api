@@ -16,8 +16,8 @@ const messageDB = {
             answer: answer, // id of message that this is answer to
             reactions: [],
         }
-        last_message_id++;
-        return 1;
+
+        return last_message_id++;
     },
 
     deleteMessage: (messageID, authorUID) => {

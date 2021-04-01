@@ -4,7 +4,7 @@ var last_group_id = 0;
 
 const dmDB = {
     doExist: (dmGroupID) => {
-        return data.dm[dmGroupID] != undefined;
+        return data.dm[parseInt(dmGroupID)] != undefined;
     },
 
     createDM: (...users) => {
@@ -16,12 +16,16 @@ const dmDB = {
         return last_group_id++;
     },
 
+    addMessage: (dmID, id) => {
+        data.dm[parseInt(dmID)].messages.push(id);
+    },
+
     getById: (dmGroupId) => {
-        return data.dm[dmGroupId];
+        return data.dm[parseInt(dmGroupId)];
     },
 
     getAllMessages: (dmID) => {
-        return data.dm[dmID];
+        return data.dm[parseInt(dmID)].messages;
     }
 }
 
