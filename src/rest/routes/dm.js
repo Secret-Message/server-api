@@ -34,7 +34,7 @@ router.get('/message/:id', userLib.verifyToken, (req, res) => { // get message
     var loop = true;
     if (sort == undefined || sort == 'oldest') {
         for (let i = 0; i < messages.length; i++) {
-            if (filterF(messages[i], () => { loop = false; }, sort || 'oldest')) {
+            if (filterF(messages[i], () => { loop = false; }, 'oldest')) {
                 filteredMessageList.push(messages[i]);
             }
             if (!loop) {
@@ -43,7 +43,7 @@ router.get('/message/:id', userLib.verifyToken, (req, res) => { // get message
         }
     } else if (sort == 'newest') {
         for (let i = messages.length - 1; i >= 0; i--) {
-            if (filterF(messages[i], () => { loop = false; }, sort || 'oldest')) {
+            if (filterF(messages[i], () => { loop = false; }, 'newest')) {
                 filteredMessageList.push(messages[i]);
             }
             if (!loop) {

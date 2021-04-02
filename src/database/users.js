@@ -58,7 +58,7 @@ const userDB = {
             groups: [], //dummy object (js doesn't have ref's)
             friends: [], //dummy object (js doesn't have ref's)
             DMs: [], //dummy object (js doesn't have ref's)
-            invitation: `${userData.name.replace(/\s+/g, "")}@${sha512().toString().substr(0, 6)}`,
+            invitation: `${userData.name.replace(/\s+/g, "")}@${sha512(userData.email).toString().substr(0, 6)}`,
             invitations: [], // list of invitations 
             status: 'offline'
         };

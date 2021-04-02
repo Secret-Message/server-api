@@ -4,6 +4,7 @@ module.exports.Filter = class Filter {
         this.parser = parser;
         this.options = options;
         this.variables = variables;
+        this.tempVariables = { ...this.variables };
     }
 
     parse(filter) {
@@ -21,10 +22,13 @@ module.exports.Filter = class Filter {
             }
         }
         stringF += "true);";
+
+        this.tempVariables = { ...this.variables };
         return (data, stop, sortType) => {
             const _parsed = this.parser(data);
             const _f = new Function("_parsed", "_variables", "_stop", "_sort", stringF);
-            return _f(_parsed, this.variables, stop, sortType);
+            const result = _f(_parsed, this.tempVariables, stop, sortType);
+            return result;
         }
     }
 }
