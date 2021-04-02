@@ -21,12 +21,13 @@ const MessageFilterOptions = {
     sender: (message, uid) => {
         return (message.author == uid);
     },
-    count: (message, num, _variables) => {
+    count: (message, num, _variables, _stop) => {
         console.log(_variables, num);
         if (_variables.count < num) {
             _variables.count++;
             return true;
         } else {
+            _stop();
             return false;
         }
     }

@@ -17,14 +17,14 @@ module.exports.Filter = class Filter {
             const filterData = parsed[1];
 
             if (filterName in this.options) {
-                stringF += `(${this.options[filterName].toString()})(_parsed, ${filterData}, _variables)&&`;
+                stringF += `(${this.options[filterName].toString()})(_parsed, ${filterData}, _variables, _stop, _sort)&&`;
             }
         }
         stringF += "true);";
-        return (data) => {
+        return (data, stop, sortType) => {
             const _parsed = this.parser(data);
-            const _f = new Function("_parsed", "_variables", stringF);
-            return _f(_parsed, this.variables);
+            const _f = new Function("_parsed", "_variables", "_stop", "_sort", stringF);
+            return _f(_parsed, this.variables, stop, sortType);
         }
     }
 }

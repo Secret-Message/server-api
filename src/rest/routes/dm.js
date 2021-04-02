@@ -23,14 +23,28 @@ router.get('/message/:id', userLib.verifyToken, (req, res) => { // get message
     const userUID = req.decoded.uid;
     const dmChannel = req.params.id;
     const filter = req.query.filter;
+    const sort = req.query.sort;
     if (!userDB.hasAccessToDM(userUID, dmChannel)) {
         res.status(403).json({ status: 'error', error: 'You don\'t have access to this DM channel' })
         return;
     };
     const filterF = parseMessageFilter(filter);
     const messages = dmDB.getAllMessages(dmChannel);
+    const messageList = [];
+    if (sort == undefined || sort == 'oldest') messageList = messages;
+    if (sort == 'newest') messageList = messages.slice().reverse();
+    var filteredMessageList = [];
+    var loop = true;
+    for (let i = 0; i < messageList.length; i++) {
+        if (filterF(messageList[i], () => { loop = false; }, sort || 'oldest')) {
+            filteredMessageList.push(messageList[i]);
+        }
+        if (!loop) {
+            break;
+        }
+    }
     res.status(200).json({
-        status: 'ok', messages: messages.filter(msg => filterF(msg)).map(msg => {
+        status: 'ok', messageList: filteredMessageList.map(msg => {
             const message = messageDB.getById(msg);
             const author = userDB.getByUID(message.author);
             return {
