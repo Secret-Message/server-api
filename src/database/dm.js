@@ -17,6 +17,7 @@ const dmDB = {
     },
 
     addMessage: (dmID, id) => {
+        if (!data.dm[parseInt(dmID)]) { return [] }
         data.dm[parseInt(dmID)].messages.push(id);
     },
 
@@ -25,6 +26,7 @@ const dmDB = {
     },
 
     getAllMessages: (dmID) => {
+        if (!data.dm[parseInt(dmID)]) { return [] }
         return data.dm[parseInt(dmID)].messages;
     }
 }

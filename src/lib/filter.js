@@ -1,17 +1,18 @@
 module.exports.Filter = class Filter {
 
-    constructor(parser, options) {
+    constructor(parser, options, ...variables) {
         this.parser = parser;
         this.options = options;
+        this.variables = variables;
     }
 
     parse(filter) {
         if (filter == '' || filter == undefined) return (data) => { return true; };
-        var filters = filter.split(';');
+        var filters = filter.toString().split(';');
 
         var stringF = `return (`;
         for (let fil of filters) {
-            const parsed = fil.split('=');
+            const parsed = fil.toString().split('=');
             const filterName = parsed[0];
             const filterData = parsed[1];
 
@@ -21,7 +22,11 @@ module.exports.Filter = class Filter {
         }
         stringF += "true);";
         return (data) => {
-            const _parsed = this.parse(data);
+            for (var variable of this.variables) {
+                eval(`var ${variable.name} = ${variable.default};`);
+            }
+
+            const _parsed = this.parser(data);
             const _f = new Function("_parsed", stringF);
             return _f(_parsed);
         }

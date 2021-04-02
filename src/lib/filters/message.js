@@ -16,14 +16,22 @@ const MessageFilterOptions = {
         return (message.timestamp <= parseInt(timestamp));
     },
     id: (message, id) => {
-        return (id.split(' ').map(e => parseInt(e)).includes(message.id));
+        return (id.toString().split(' ').map(e => parseInt(e)).includes(message.id));
     },
     sender: (message, uid) => {
         return (message.author == uid);
+    },
+    count: (message, num) => {
+        if (num <= count) {
+            count++;
+            return true;
+        } else {
+            return false;
+        }
     }
 };
 const messageDB = require('../../database/message');
-const MessageFilter = new Filter(key => messageDB.getById(key), MessageFilterOptions);
+const MessageFilter = new Filter(key => messageDB.getById(key), MessageFilterOptions, { name: 'count', default: 0 });
 function parseMessageFilter(filter) {
     return MessageFilter.parse(filter);
 }

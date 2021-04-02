@@ -48,7 +48,6 @@ const verifyToken = (req, res, next) => {
                 if (!userDB.doExist(decoded.uid)) {
                     return;
                 }
-                log(chalk.green("user token correct"));
                 req.decoded = decoded
                 next()
             }
