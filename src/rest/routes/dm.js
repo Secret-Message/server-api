@@ -30,17 +30,25 @@ router.get('/message/:id', userLib.verifyToken, (req, res) => { // get message
     };
     const filterF = parseMessageFilter(filter);
     const messages = dmDB.getAllMessages(dmChannel);
-    const messageList = [];
-    if (sort == undefined || sort == 'oldest') messageList = messages;
-    if (sort == 'newest') messageList = messages.slice().reverse();
     var filteredMessageList = [];
     var loop = true;
-    for (let i = 0; i < messageList.length; i++) {
-        if (filterF(messageList[i], () => { loop = false; }, sort || 'oldest')) {
-            filteredMessageList.push(messageList[i]);
+    if (sort == undefined || sort == 'oldest') {
+        for (let i = 0; i < messages.length; i++) {
+            if (filterF(messages[i], () => { loop = false; }, sort || 'oldest')) {
+                filteredMessageList.push(messages[i]);
+            }
+            if (!loop) {
+                break;
+            }
         }
-        if (!loop) {
-            break;
+    } else if (sort == 'newest') {
+        for (let i = messages.length - 1; i >= 0; i--) {
+            if (filterF(messages[i], () => { loop = false; }, sort || 'oldest')) {
+                filteredMessageList.push(messages[i]);
+            }
+            if (!loop) {
+                break;
+            }
         }
     }
     res.status(200).json({
