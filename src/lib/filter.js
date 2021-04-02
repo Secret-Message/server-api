@@ -1,6 +1,6 @@
 module.exports.Filter = class Filter {
 
-    constructor(parser, options, ...variables) {
+    constructor(parser, options, variables) {
         this.parser = parser;
         this.options = options;
         this.variables = variables;
@@ -17,18 +17,14 @@ module.exports.Filter = class Filter {
             const filterData = parsed[1];
 
             if (filterName in this.options) {
-                stringF += `(${this.options[filterName].toString()})(_parsed, ${filterData})&&`;
+                stringF += `(${this.options[filterName].toString()})(_parsed, ${filterData}, _variables)&&`;
             }
         }
         stringF += "true);";
         return (data) => {
-            for (var variable of this.variables) {
-                eval(`var ${variable.name} = ${variable.default};`);
-            }
-
             const _parsed = this.parser(data);
-            const _f = new Function("_parsed", stringF);
-            return _f(_parsed);
+            const _f = new Function("_parsed", "_variables", stringF);
+            return _f(_parsed, this.variables);
         }
     }
 }

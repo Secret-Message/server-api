@@ -21,9 +21,10 @@ const MessageFilterOptions = {
     sender: (message, uid) => {
         return (message.author == uid);
     },
-    count: (message, num) => {
-        if (num <= count) {
-            count++;
+    count: (message, num, _variables) => {
+        console.log(_variables, num);
+        if (_variables.count < num) {
+            _variables.count++;
             return true;
         } else {
             return false;
@@ -31,7 +32,7 @@ const MessageFilterOptions = {
     }
 };
 const messageDB = require('../../database/message');
-const MessageFilter = new Filter(key => messageDB.getById(key), MessageFilterOptions, { name: 'count', default: 0 });
+const MessageFilter = new Filter(key => messageDB.getById(key), MessageFilterOptions, { count: 0 });
 function parseMessageFilter(filter) {
     return MessageFilter.parse(filter);
 }
