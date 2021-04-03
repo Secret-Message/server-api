@@ -1,5 +1,5 @@
 // Secret Message project © 2021 is licensed under CC BY-NC-ND 4.0
-// ^ naglowek z licencja
+// ^ license
 /*
    _____                     __     __  ___
   / ___/___  _____________  / /_   /  |/  /__  ______________ _____ ____
@@ -8,7 +8,7 @@
 /____/\___/\___/_/   \___/\__/  /_/  /_/\___/____/____/\__,_/\__, /\___/
                                                             /____/
 */
-// ascii ^
+// ascii banner^
 
 require('dotenv').config();
 
@@ -24,5 +24,7 @@ admin.initializeApp({
    credential: admin.credential.cert(serviceAccount)
 });
 
-// rest api: olix3001, hiderr
-// websocket: Frankoslaw, jj15_warrior
+// /----------------------- Credits: -----------------------\
+// |               rest api: olix3001, hiderr               |
+// |           websocket: Frankoslaw, jj15_warrior          |
+// \--------------------------------------------------------/
