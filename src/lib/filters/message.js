@@ -14,11 +14,11 @@ sender=<who has sent message>
 const MessageFilterLayer0 = {
     from: (array, timestamp) => {
         // DON'T WORK
-        return array.slice(lower_bound(array, (e) => messageDB.getById(e).timestamp <= timestamp));
+        return array.slice(lower_bound(array, (e) => messageDB.getById(e).timestamp <= parseInt(timestamp)));
     },
     to: (array, timestamp) => {
         // DON'T WORK
-        return array.slice(0, upper_bound(array, (e) => messageDB.getById(e).timestamp < timestamp));
+        return array.slice(0, upper_bound(array, (e) => messageDB.getById(e).timestamp < parseInt(timestamp)));
     },
 }
 const MessageFilterLayer1 = {
