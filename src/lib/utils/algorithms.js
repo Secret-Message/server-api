@@ -5,9 +5,9 @@ function lower_bound(array, f) {
     while (start < end) {
         const center = Math.floor((start + end) / 2);
         if (f(array[center])) {
-            start = center;
+            end = center;
         } else {
-            end = center - 1;
+            start = center + 1;
         }
     }
     return end
@@ -18,14 +18,14 @@ function upper_bound(array, f) {
     var start = 0;
     var end = array.length - 1;
     while (start < end) {
-        const center = Math.floor((start + end) / 2);
+        const center = Math.ceil((start + end) / 2);
         if (f(array[center])) {
-            start = center + 1;
+            start = center;
         } else {
-            end = center;
+            end = center - 1;
         }
     }
-    return end + 1;
+    return end;
 }
 
 module.exports = { lower_bound, upper_bound };
