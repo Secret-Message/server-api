@@ -23,7 +23,7 @@ module.exports.Filter = class Filter {
 
             // parse layer1 functions into one function
             if (filterName in this.layer1) {
-                stringF += `(${this.layer1[filterName].toString()})(_parsed, ${filterData}, _variables, _stop)&&`;
+                stringF += `_layer1_functions["${filterName}"](_parsed, ${filterData}, _variables, _stop)&&`;
             }
             // add active filters from layer0 into new array
             if (filterName in this.layer0) {
@@ -40,14 +40,14 @@ module.exports.Filter = class Filter {
                 array = fil[0](array, fil[1]);
             }
             // create function from previously created string
-            const _f = new Function("_parsed", "_variables", "_stop", stringF);
+            const _f = new Function("_parsed", "_variables", "_stop", "_layer1_functions", stringF);
             // let every element from array through parser
             const mapped = array.map((e) => this.parser(e));
             const result = [];
             var _loop = true;
             // for every element from array go through layer1 filter function
             for (let i = mapped.length - 1; i > 0; i--) {
-                if (_f(mapped[i], this.tempVariables, () => { _loop = false; })) {
+                if (_f(mapped[i], this.tempVariables, () => { _loop = false; }, this.layer1)) {
                     result.push(array[i]);
                 }
                 if (!_loop) {
