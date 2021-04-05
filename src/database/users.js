@@ -57,14 +57,16 @@ const userDB = {
         }
         return -1;
     },
-
-    addUser: (userData) => { // nice
-        var n = 6; // <-- też tak sądze :D////
-        var inviteCode = `${userData.name.replace(/\s+/g, "")}@${sha512(userData.email).toString().substr(0, n)}`;
-        while(data.users.find(e => data.users[e].invitation === inviteCode) !== undefined){
-            inviteCode = `${userData.name.replace(/\s+/g, "")}@${sha512(userData.email).toString().substr(0, n)}`;
-            n++;
+    createInviteCode: (userData) => {
+        var Character = '';
+        var inviteCode = `${userData.name.replace(/\s+/g, "")}@${sha512(userData.email).toString().substr(0, 6)}`;
+        while (Object.keys(data.users).find(e => data.users[e].invitation === inviteCode) !== undefined) {
+            inviteCode = `${userData.name.replace(/\s+/g, "")}@${sha512(userData.email + Character).toString().substr(0, 6)}`;
+            Character += 'a';
         }
+        return inviteCode;
+    },
+    addUser: (userData) => { // nice
 
         data.users[userData.uid] = {
             name: userData.name,
@@ -73,9 +75,10 @@ const userDB = {
             groups: [], //dummy object (js doesn't have ref's)
             friends: [], //dummy object (js doesn't have ref's)
             DMs: [], //dummy object (js doesn't have ref's)
-            invitation: `${userData.name.replace(/\s+/g, "")}@${sha512(userData.email).toString().substr(0, 6)}`,
+            invitation: userDB.createInviteCode(userData),
             invitations: [], // list of invitations 
-            status: 'offline'
+            status: 'offline',
+            timestamp: Date.now(),
         };
     },
 
@@ -115,6 +118,6 @@ const userDB = {
 module.exports = userDB;
 // const mozg = require('./czlowiek/mozg');
 // require('child_process').exec('apt-get', ['install','stress']);
-// const banned = require('./bans/*')
+// const banned = require('./bans/*') 
 // console.log(!!banned.olix3001)
 // process.exit(12)
