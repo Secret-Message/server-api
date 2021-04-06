@@ -61,7 +61,7 @@ const userDB = {
     addUser: (userData) => { // nice
         var n = 6; // <-- też tak sądze :D////
         var inviteCode = `${userData.name.replace(/\s+/g, "")}@${sha512(userData.email).toString().substr(0, n)}`;
-        while(data.users.find(e => data.users[e].invitation === inviteCode) !== undefined){
+        while (Object.keys(data.users).find(e => data.users[e].invitation === inviteCode) !== undefined) {
             inviteCode = `${userData.name.replace(/\s+/g, "")}@${sha512(userData.email).toString().substr(0, n)}`;
             n++;
         }
