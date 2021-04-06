@@ -60,7 +60,8 @@ const userDB = {
             DMs: [], //dummy object (js doesn't have ref's)
             invitation: `${userData.name.replace(/\s+/g, "")}@${sha512(userData.email).toString().substr(0, 6)}`,
             invitations: [], // list of invitations 
-            status: 'offline'
+            status: 'offline',
+            joinDate: Date.now(),
         };
     },
 
