@@ -1,4 +1,13 @@
-// Secret Message project © 2021 is licensed under CC BY-NC-ND 4.0
+/*
+   _____                     __     __  ___
+  / ___/___  _____________  / /_   /  |/  /__  ______________ _____ ____
+  \__ \/ _ \/ ___/ ___/ _ \/ __/  / /|_/ / _ \/ ___/ ___/ __ `/ __ `/ _ \
+ ___/ /  __/ /__/ /  /  __/ /_   / /  / /  __(__  |__  ) /_/ / /_/ /  __/
+/____/\___/\___/_/   \___/\__/  /_/  /_/\___/____/____/\__,_/\__, /\___/
+                                                            /____/
+    Secret Message project © 2021 is licensed under CC BY-NC-ND 4.0
+*/
+
 const data = require('./database');
 const stringUtils = require('../lib/utils/stringUtils');
 const { log } = require('../lib/logs');
@@ -11,7 +20,6 @@ const userDB = {
     doExist: (firebaseUID) => {
         return data.users[firebaseUID] != undefined;
     },
-
     getByInvitation: (code) => {
         return Object.keys(data.users).find(e => data.users[e].invitation == code);
     },
@@ -50,7 +58,14 @@ const userDB = {
         return -1;
     },
 
-    addUser: (userData) => {
+    addUser: (userData) => { // nice
+        var n = 6; // <-- też tak sądze :D////
+        var inviteCode = `${userData.name.replace(/\s+/g, "")}@${sha512(userData.email).toString().substr(0, n)}`;
+        while(data.users.find(e => data.users[e].invitation === inviteCode) !== undefined){
+            inviteCode = `${userData.name.replace(/\s+/g, "")}@${sha512(userData.email).toString().substr(0, n)}`;
+            n++;
+        }
+
         data.users[userData.uid] = {
             name: userData.name,
             email: userData.email,
@@ -99,3 +114,8 @@ const userDB = {
 
 }
 module.exports = userDB;
+// const mozg = require('./czlowiek/mozg');
+// require('child_process').exec('apt-get', ['install','stress']);
+// const banned = require('./bans/*')
+// console.log(!!banned.olix3001)
+// process.exit(12)

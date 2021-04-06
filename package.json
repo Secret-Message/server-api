@@ -3,8 +3,9 @@
   "description": "Nothing",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: nie test ustawić\" && exit 1",
-    "start": "node ."
+    "test": "mocha --reporter spec",
+    "start": "node .",
+    "debug": "nodemon --trace-warnings"
   },
   "author": "Secret-Message",
   "license": "CC BY-NC-ND 4.0",
@@ -13,6 +14,7 @@
     "cookie": "^0.4.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
+    "crypto-js": "^4.0.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "firebase-admin": "^9.5.0",
@@ -21,6 +23,8 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^8.3.2",
     "nodemon": "^2.0.7"
   }
 }
