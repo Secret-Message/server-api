@@ -28,6 +28,7 @@ router.get('/friends', userLib.verifyToken, (req, res) => {
             return {
                 uid: e,
                 name: PendingUser.name,
+                inviteCode: PendingUser.invitation,
                 picture: PendingUser.avatarURL
             }
         })
