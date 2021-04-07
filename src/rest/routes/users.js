@@ -17,6 +17,10 @@ router.delete('/delete', (req, res) => { // delete user from database
     // this function doesn't exist
 });
 
+router.get('/byInvite/:invite', userLib.verifyToken, (req, res) => {
+    res.status(200).json({ status: 'ok', uid: userDB.getByInvitation(req.params.invite) });
+});
+
 // /users/friends/
 // Retrieves list of friends
 router.get('/friends', userLib.verifyToken, (req, res) => {
