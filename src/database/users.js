@@ -53,8 +53,7 @@ const userDB = {
 
     getFriendDM: (uid, friendID) => {
         if (data.users[uid].friends.includes(friendID)) {
-            return data.users[uid][friendID];
-        }
+            return data.users[uid].DMs[data.users[uid].friends.indexOf(friendID)];        }
         return -1;
     },
     createInviteCode: (userData) => {
@@ -78,7 +77,7 @@ const userDB = {
             invitation: userDB.createInviteCode(userData),
             invitations: [], // list of invitations 
             status: 'offline',
-            timestamp: Date.now(),
+            joinDate: Date.now(),
         };
     },
 
