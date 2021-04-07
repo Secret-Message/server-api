@@ -46,6 +46,7 @@ const verifyToken = (req, res, next) => {
             }
             if (decoded) {
                 if (!userDB.doExist(decoded.uid)) {
+                    res.status(401).json({ status: 'error', msg: 'User does not exist' });
                     return;
                 }
                 req.decoded = decoded

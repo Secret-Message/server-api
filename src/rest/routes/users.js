@@ -17,6 +17,10 @@ router.delete('/delete', (req, res) => { // delete user from database
     // this function doesn't exist
 });
 
+router.get('/byInvite/:invite', userLib.verifyToken, (req, res) => {
+    res.status(200).json({ status: 'ok', uid: userDB.getByInvitation(req.params.invite) });
+});
+
 // /users/friends/
 // Retrieves list of friends
 router.get('/friends', userLib.verifyToken, (req, res) => {
@@ -28,6 +32,7 @@ router.get('/friends', userLib.verifyToken, (req, res) => {
             return {
                 uid: e,
                 name: PendingUser.name,
+                inviteCode: PendingUser.invitation,
                 picture: PendingUser.avatarURL
             }
         })
@@ -122,7 +127,7 @@ router.post('/invites/decline', userLib.verifyToken, (req, res) => {
 })
 
 router.get('/friendDM/:id', userLib.verifyToken, (req, res) => {
-    res.status(200).json({ status: 'ok', dm: userDB.getFriendDM(req.params.id) });
+    res.status(200).json({ status: 'ok', dm: userDB.getFriendDM(req.decoded.uid, req.params.id) });
 });
 
 module.exports = router;
