@@ -127,7 +127,7 @@ router.post('/invites/decline', userLib.verifyToken, (req, res) => {
 })
 
 router.get('/friendDM/:id', userLib.verifyToken, (req, res) => {
-    res.status(200).json({ status: 'ok', dm: userDB.getFriendDM(req.params.id) });
+    res.status(200).json({ status: 'ok', dm: userDB.getFriendDM(req.decoded.uid, req.params.id) });
 });
 
 module.exports = router;
