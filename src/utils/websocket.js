@@ -1,15 +1,15 @@
 // Secret Message project © 2021 is licensed under CC BY-NC-ND 4.0
-var userDB;
+const userDB = require('../models/old_users');
 const httpServer = require('http').createServer();
 const jwt = require('jsonwebtoken');
 const chalk = require('chalk');
 const cookie = require('cookie');
-const { log } = require('../lib/logs');
+const { log } = require('./logs');
 
 
 const io = require('socket.io')(httpServer, {
     cors: {
-        origins: ["http://localhost:8000", "http://localhost:8080"],
+        origins: ["http://localhost:80", "http://localhost:443"],
         credentials: true,
         mathods: ['GET', 'POST']
     }
@@ -75,7 +75,7 @@ io.on('connection', socket => {
         }
 
         for (let dm of userDB.getAllUserDMs(uid)) {
-            socket.join('dm:' + dm);
+            socket.join('dm:' + dm);userDB = require('../models/old_users');
         }
 
         // set status to online :>
@@ -91,6 +91,5 @@ io.on('connection', socket => {
 module.exports = { socketMap: socketMap, io: io };
 
 httpServer.listen(8080, () => {
-    userDB = require('../database/users');
     console.log(chalk.green.bold("Websocket listening on port 8080"))
 });

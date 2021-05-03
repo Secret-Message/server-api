@@ -1,9 +1,9 @@
 {
   "version": "1.0.0",
   "description": "Nothing",
-  "main": "src/index.js",
+  "main": "src/server.js",
   "scripts": {
-    "test": "mocha --reporter spec",
+    "test": "mocha --recursive --reporter spec",
     "start": "node .",
     "debug": "nodemon --trace-warnings"
   },
@@ -19,6 +19,8 @@
     "express": "^4.17.1",
     "firebase-admin": "^9.5.0",
     "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.6.2",
     "socket.io": "^4.0.0",
     "uuid": "^8.3.2"
   },
