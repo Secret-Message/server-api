@@ -1,5 +1,3 @@
-// Secret Message project © 2021 is licensed under CC BY-NC-ND 4.0
-// ^ naglowek z licencja
 /*
    _____                     __     __  ___
   / ___/___  _____________  / /_   /  |/  /__  ______________ _____ ____
@@ -7,8 +5,8 @@
  ___/ /  __/ /__/ /  /  __/ /_   / /  / /  __(__  |__  ) /_/ / /_/ /  __/
 /____/\___/\___/_/   \___/\__/  /_/  /_/\___/____/____/\__,_/\__, /\___/
                                                             /____/
+    Secret Message project © 2021 is licensed under CC BY-NC-ND 4.0
 */
-// ascii ^
 
 require('dotenv').config();
 
@@ -25,4 +23,5 @@ admin.initializeApp({
 });
 
 // rest api: olix3001, hiderr
+// database: xJulek
 // websocket: Frankoslaw, jj15_warrior
