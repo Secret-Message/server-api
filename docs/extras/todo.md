@@ -20,7 +20,7 @@ Dodać stopniowe pobieranie wiadomości, ponieważ serverr aktualnie wysyła ws
 Dodać Web RTC | ❌️
 Dodać szyfrowanie np. AES, RSA | ❌️
 Usunąć pole status z odpowiedzi requestów sam http status np 200("ok") czy 401("unauthorized") mówią o statusie | ✅️
-Testy jednostkowe | ❌️
+Testy jednostkowe oraz TDD( test driven development ) | ❌️
 rozważyć ograniczenie ilości requestów( https://medium.com/dataseries/how-to-rate-limit-your-api-f1c2cf420bdf ) | ❌️
 Naprawić zapytania sequalize wątpie, aby łączenie 4 tabel w jedną było dobrą praktyką, ale na razie nie znam lepszego rozwiązania | ❌️
 Naprawić status requestów bo aktualnie zawsze w przypdaku błędu zwracam 403( forbidden ) niezależnie od tego co się stało | ❌️

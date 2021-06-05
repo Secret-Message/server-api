@@ -12,3 +12,4 @@
 
 - Extras
   * [TODO](./extras/todo.md)
+  * [Privlages](./extras/privlages.md)
