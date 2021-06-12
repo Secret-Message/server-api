@@ -26,3 +26,4 @@ Naprawić zapytania sequalize wątpie, aby łączenie 4 tabel w jedną było dob
 Naprawić status requestów bo aktualnie zawsze w przypdaku błędu zwracam 403( forbidden ) niezależnie od tego co się stało | ❌️
 Zawęzić zakresy pobierania danych sql, aby nie pobierał całych rzędów danych tylko potrzebne wartości np. attributes: ["uuid", "name"] | ❌️
 Install docsify as dev dependency | ❌️
+Dodać allowNull i walidacje do modeli sequalize | ❌️

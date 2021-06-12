@@ -20,6 +20,11 @@ module.exports = (sequelize, Sequelize) => {
       },
       avatar_url: {
         type: Sequelize.STRING()
+      },
+      status: {
+        type: Sequelize.CHAR(28),
+        allowNull: false,
+        defaultValue: "offline"
       }
     });
   
