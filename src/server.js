@@ -13,11 +13,16 @@ const express = require('express');
 const app = express();
 const chalk = require('chalk'); // <- kolorki :D
 const cors = require('cors');
+const PORT = process.env.PORT || 3000;
+const fs = require('fs');
+const path = require('path');
+//const ws = require('./utils/websocket.js');
+
 require('dotenv').config();
 
 
 var corsOptions = {
-    origin: ["http://localhost:80", "http://localhost:443"],
+    origin: ["http://localhost:80", "http://localhost:443", "http://localhost:8000"],
     optionsSuccessStatus: 200, // For legacy browser support
     credentials: true,
 }
@@ -28,20 +33,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(require('cookie-parser')());
 
-const db = require("./models");
+fs
+  .readdirSync(`${__dirname}/routes`)
+  .filter(file => {
+    return (file.slice(-3) === '.js');
+  })
+  .forEach(file => require(path.join(__dirname, file))(app))
 
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(PORT, () => {
+        console.log(chalk.green.bold(`App listening on port ${PORT}`));
+    });
+}
 
-require("./routes/user.route.js")(app);
-require("./routes/message.route.js")(app);
-require("./routes/server.route.js")(app);
-require("./routes/channel.route.js")(app);
-require("./routes/category.route.js")(app);
-require("./routes/role.route.js")(app);
-
-app.listen(3000, () => {
-    console.log(chalk.green.bold("App listening on port 3000"));
-});
-
+module.exports = app;
 // /----------------------- Credits: -----------------------\
 // |               rest api: olix3001, hiderr               |
 // |           websocket: Frankoslaw, jj15_warrior          |
