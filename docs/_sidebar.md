@@ -2,6 +2,7 @@
 
 - REST API
   * [Endpoints](./rest/endpoints.md)
+  * [Endpoints( "Depracted" )](./rest/old_endpoints.md)
 
 - GraphQL API
 

@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.belongsTo(models.Servers)
       this.hasMany(models.Channels)
-      this.hasMany(models.Permissions_overwrite)
+      this.belongsTo(models.Permissions_overwrite)
     }
   };
   Categories.init({

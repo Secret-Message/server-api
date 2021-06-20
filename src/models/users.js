@@ -1,4 +1,6 @@
 'use strict';
+const Sequelize = require('sequelize');
+
 const {
   Model
 } = require('sequelize');
@@ -22,8 +24,14 @@ module.exports = (sequelize, DataTypes) => {
     firebase_uid: DataTypes.STRING,
     friend_code: DataTypes.INTEGER,
     avatar_url: DataTypes.STRING,
-    join_date: DataTypes.DATE,
-    status: DataTypes.STRING,
+    join_date: {
+      type: DataTypes.DATE,
+      defaultValue: Sequelize.NOW
+    },
+    status: {
+      type: DataTypes.STRING,
+      defaultValue: "online"
+    },
     custom_status: DataTypes.STRING
   }, {
     sequelize,

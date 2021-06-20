@@ -1,6 +1,6 @@
 module.exports = app => {
     const auth = require("../controllers/auth.controller.js");
-    const server = require("../controllers/user.controller.js");
+    const server = require("../controllers/server.controller.js");
 
     app.post("/api/v1/servers", auth.loggedin, server.createServer );
     app.delete("/api/v1/servers/:serverId", auth.loggedin, server.deleteServer );

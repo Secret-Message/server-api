@@ -5,8 +5,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Permissions_overwrite extends Model {
     static associate(models) {
-      this.belongsTo(models.Categories)
-      this.belongsTo(models.Channels)
+      this.hasMany(models.Categories)
+      this.hasMany(models.Channels)
       this.belongsTo(models.Members)
       this.belongsTo(models.Roles)
     }

@@ -18,7 +18,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       join_date: {
-        type: Sequelize.DATE
+        type: DataTypes.DATE,
+        defaultValue: Sequelize.NOW
       },
       status: {
         type: Sequelize.STRING

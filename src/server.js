@@ -9,14 +9,15 @@
 */
 // ascii banner^
 
-const express = require('express');
-const app = express();
-const chalk = require('chalk'); // <- kolorki :D
-const cors = require('cors');
-const PORT = process.env.PORT || 3000;
-const fs = require('fs');
-const path = require('path');
+import express from 'express';
+import chalk from 'chalk'; // <- kolorki :D
+import cors from 'cors';
+import fs from 'fs';
+import path from 'path';
 //const ws = require('./utils/websocket.js');
+import db from './models';
+const app = express();
+const PORT = process.env.PORT || 3000;
 
 require('dotenv').config();
 
@@ -38,7 +39,7 @@ fs
   .filter(file => {
     return (file.slice(-3) === '.js');
   })
-  .forEach(file => require(path.join(__dirname, file))(app))
+  .forEach(file => require(path.join(`${__dirname}/routes`, file))(app))
 
 if (process.env.NODE_ENV !== 'test') {
     app.listen(PORT, () => {
@@ -46,7 +47,7 @@ if (process.env.NODE_ENV !== 'test') {
     });
 }
 
-module.exports = app;
+export default app;
 // /----------------------- Credits: -----------------------\
 // |               rest api: olix3001, hiderr               |
 // |           websocket: Frankoslaw, jj15_warrior          |

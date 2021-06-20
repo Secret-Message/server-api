@@ -28,3 +28,4 @@ Zawęzić zakresy pobierania danych sql, aby nie pobierał całych rzędów dany
 Install docsify as dev dependency | ❌️
 Dodać allowNull i walidacje do modeli sequalize | ❌️
 Refactor authService ponieważ robie 2 razy tego samego selecta | ❌️
+Fix migrations for database beacouse models dont align with migrations | ❌️
