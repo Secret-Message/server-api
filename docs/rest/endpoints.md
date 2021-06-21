@@ -8,28 +8,52 @@
 ## User
 ### google obtain firebaseToken ( only for version without popup like cli )
 ```js
-method: "POST",
-url: "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=<firebaseApiKey>",
-body: {
-    email: string,
-    password: string,
-    returnSecureToken: bool <always set to true >
-},
-response: {
-    ind: string,
-    localId: "string",
-    email: string,
-    displayName: string,
-    idToken: string <this is what you need>,
-    registered: bool,
-    refreshToken: string,
-    expiresIn: int <seconds>
-},
-description: "request will login to firebase and obtain required token"
+{
+    "method": "POST",
+    "url": `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${firebaseApiKey}`,
+    "body": {
+        "email": "string",
+        "password": "string",
+        "returnSecureToken": "bool" //always set to true
+    },
+    "response": {
+        "ind": "string",
+        "localId": "string",
+        "email": "string",
+        "displayName": "string",
+        "idToken": "string", //this is what you need
+        "registered": "bool",
+        "refreshToken": "string",
+        "expiresIn": "int" //seconds
+    },
+    "description": "request will login to firebase and obtain required token"
+}
 ```
 ### login v1 / who am i v1 ( CREATE / READ )
+```js
+{
+    "method": "post",
+    "url": `${serverIP}\api\v1\login`
+}
+```
+
 ### get user by id v1 ( READ ) <!--- inherit from base service -->
-### get user by friend code v1 ( READ ) 
+```js
+{
+    "method": "GET",
+    "url": `${serverIP}\api\v1\users\:userId`
+}
+```
+
+### find user by friend code v1 ( READ ) 
+```js
+{
+    "method": "GET",
+    "url": `${serverIP}\api\v1\users\friendCode\:friendCode`
+    "description": "This is only helper endpoint for easier searching for user all other operations still operate on userId exept of friendCode"
+}
+```
+
 ### get current user servers v1 ( READ )
 ```
 Merged with logi / who am i
@@ -41,55 +65,357 @@ Merged with logi / who am i
 ```
 
 ### modify current user v1 ( UPDATE ) <!--- inherit from base service -->
+```js
+{
+    "method": "PATCH",
+    "url": `${serverIP}\api\v1\users`
+}
+```
+
 ### Delete Current User v1 ( DELETE ) <!--- inherit from base service -->
+```js
+{
+    "method": "DELETE",
+    "url": `${serverIP}\api\v1\users`
+}
+```
+
 ### Get shared users v1 ( READ )
+```js
+{
+    "method": "GET",
+    "url": `${serverIP}\api\v1\users\:userId\sharedUsers`
+}
+```
+
 ### Get shared servers v1 ( READ ) 
+```js
+{
+    "method": "GET",
+    "url": `${serverIP}\api\v1\users\:userId\sharedServers`
+}
+```
 
 ## Friends
 ### Get frined requests v1 ( READ ) <!--- inherit from base service -->
+```js
+{
+    "method": "GET",
+    "url": `${serverIP}\api\v1\users\friendsRequests`
+}
+```
+
 ### Send friend request v1 ( CREATE ) <!--- inherit from base service -->
+```js
+{
+    "method": "POST",
+    "url": `${serverIP}\api\v1\users\friendsRequests`
+}
+```
+
 ### Accep friend request v1
+```js
+{
+    "method": "POST",
+    "url": `${serverIP}\api\v1\users\friendsRequests\:requestId\accept`
+}
+```
+
 ### Reject friend request v1
+```js
+{
+    "method": "POST",
+    "url": `${serverIP}\api\v1\users\friendsRequests\:requestId\reject`
+}
+```
+
 ### Finde user by friend code v1
 ```
 Moved to User service
 ```
 ## Servers
 ### Create server ( CREATE ) <!--- inherit from base service -->
-### Get server by id ( READ ) <!--- inherit from base service -->
-### Update server ( UPDATE ) <!--- inherit from base service -->
-### Delete server ( DELETE ) <!--- inherit from base service -->
-## Categories
-### CREATE
-### READ
-### UPDATE
-### DELETE
-## Channels
-### CREATE
-### READ
-### UPDATE
-### DELETE
-## Messages
-### CREATE
-### READ
-### UPDATE
-### DELETE
-## Roles
-### CREATE
-### READ
-### UPDATE
-### DELETE
-## Members
-### CREATE
-### READ
-### UPDATE
-### DELETE
+```js
+{
+    "method": "POST",
+    "url": `${serverIP}\api\v1\servers`
+}
+```
 
-## Permissions
-### CREATE
-### READ
-### UPDATE
-### DELETE
+### Get server by id ( READ ) <!--- inherit from base service -->
+```js
+{
+    "method": "GET",
+    "url": `${serverIP}\api\v1\servers\:serverId`
+}
+```
+
+### Update server ( UPDATE ) <!--- inherit from base service -->
+```js
+{
+    "method": "PATCH",
+    "url": `${serverIP}\api\v1\servers\:serverId`
+}
+```
+
+### Delete server ( DELETE ) <!--- inherit from base service -->
+```js
+{
+    "method": "DELETE",
+    "url": `${serverIP}\api\v1\servers\:serverId`
+}
+```
+
+## Categories
+### Get category by id v1 ( READ ) <!--- inherit from base service -->
+```js
+{
+    "method": "GET",
+    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId`
+}
+```
+
+### Create category v1 ( CREATE ) <!--- inherit from base service -->
+```js
+{
+    "method": "POST",
+    "url": `${serverIP}\api\v1\servers\:serverId\categories`
+}
+```
+
+### Update category v1 ( UPDATE ) <!--- inherit from base service -->
+```js
+{
+    "method": "PATCH",
+    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId`
+}
+```
+
+### Delete category v1 ( DELETE ) <!--- inherit from base service -->
+```js
+{
+    "method": "DELETE",
+    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId`
+}
+```
+
+## Channels
+### Create channe v1 ( CREATE ) <!--- inherit from base service -->
+```js
+{
+    "method": "POST",
+    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\channels`
+}
+```
+
+### Get channel by id v1 ( READ ) <!--- inherit from base service -->
+```js
+{
+    "method": "GET",
+    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\channels\:channelId`
+}
+```
+
+### Update channel v1 ( UPDATE ) <!--- inherit from base service -->
+```js
+{
+    "method": "PATCH",
+    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\channels\:channelId`
+}
+```
+
+### Delete channel v1 ( DELETE ) <!--- inherit from base service -->
+```js
+{
+    "method": "DELETE",
+    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\channels\:channelId`
+}
+```
+
+## Messages
+### Send message v1 ( CREATE ) <!--- inherit from base service -->
+```js
+{
+    "method": "POST",
+    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\channels\:channelId\messages`
+}
+```
+
+### Get messages in channel v1 ( READ ) <!--- inherit from base service -->
+```js
+{
+    "method": "GET",
+    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\channels\:channelId\messages?offset=<>&limit=<>`
+}
+```
+
+### Edit message v1 ( UPDATE ) <!--- inherit from base service -->
+```js
+{
+    "method": "PATCH",
+    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\channels\:channelId\messages\:messageId`
+}
+```
+
+### Delete message v1 ( DELETE ) <!--- inherit from base service -->
+```js
+{
+    "method": "DELETE",
+    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\channels\:channelId\messages\:messageId`
+}
+```
+
+## Roles
+### Create role v1 ( CREATE ) <!--- inherit from base service -->
+```js
+{
+    "method": "POST",
+    "url": `${serverIP}\api\v1\servers\:serverId\roles`
+}
+```
+
+### Get member roles v1 ( READ ) 
+```js
+{
+    "method": "GET",
+    "url": `${serverIP}\api\v1\servers\:serverId\members\:memberId\roles`
+}
+```
+
+### Get server roles v1 ( READ ) 
+```js
+{
+    "method": "GET",
+    "url": `${serverIP}\api\v1\servers\:serverId\roles`
+}
+```
+
+### Update role v1 ( UPDATE ) <!--- inherit from base service -->
+```js
+{
+    "method": "PATCH",
+    "url": `${serverIP}\api\v1\servers\:serverId\roles\:roleId`
+}
+```
+
+### Delete role v1 ( DELETE ) <!--- inherit from base service -->
+```js
+{
+    "method": "DELETE",
+    "url": `${serverIP}\api\v1\servers\:serverId\roles\:roleId`
+}
+```
+
+### Assign role to member v1 ( CREATE )
+```js
+{
+    "method": "POST",
+    "url": `${serverIP}\api\v1\servers\:serverId\members\:memberId\roles`
+}
+```
+
+### Remove role from member v1 ( CREATE )
+```js
+{
+    "method": "POST",
+    "url": `${serverIP}\api\v1\servers\:serverId\members\:memberId\roles\:assignId`
+}
+```
+
+## Members
+### Join server v1 ( CREATE )
+```js
+{
+    "method": "POST",
+    "url": `${serverIP}\api\v1\join\:serverId`
+}
+```
+
+### Leave server v1 ( DELETE )
+```js
+{
+    "method": "DELETE",
+    "url": `${serverIP}\api\v1\users\servers\:serverId`
+}
+```
+
+### Ban member v1 ( DELETE )
+```js
+{
+    "method": "DELETE",
+    "url": `${serverIP}\api\v1\servers\:serverId\members\:memberId\ban`
+}
+```
+
+### Kick member v1 ( DELETE )
+```js
+{
+    "method": "DELETE",
+    "url": `${serverIP}\api\v1\servers\:serverId\members\:memberId\kick`
+}
+```
+
+## Permissions overwrites
+### Assign permission overwrite v1 ( CREATE )
+```js
+{
+    "method": "POST",
+    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\permissionsOwerwrites` ||
+    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\channels\:channelId\permissionsOwerwrites`
+}
+```
+
+### Get permission overwrites v1 ( READ )
+```js
+{
+    "method": "POST",
+    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\permissionsOwerwrites` ||
+    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\channels\:channelId\permissionsOwerwrites`
+}
+```
+
+### Update permission overwrite v1 ( UPDATE )
+```js
+{
+    "method": "PATCH",
+    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\permissionsOwerwrites\:overWriteID` ||
+    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\channels\:channelId\permissionsOwerwrites\overWriteID`
+}
+```
+
+### Delete permission overwrite v1 ( DELETE )
+```js
+{
+    "method": "DELETE",
+    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\permissionsOwerwrites\:overWriteID` ||
+    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\channels\:channelId\permissionsOwerwrites\overWriteID`
+}
+```
+
+## Invites
+### Create server invite v1 ( CREATE ) <!--- inherit from base service -->
+```js
+{
+    "method": "POST",
+    "url": `${serverIP}\api\v1\servers\:serverId\invites`
+}
+```
+
+### Delete server invite v1 ( DELETE ) <!--- inherit from base service -->
+```js
+{
+    "method": "DELETE",
+    "url": `${serverIP}\api\v1\servers\:serverId\invites\:inviteId`
+}
+```
+
+### Get existing server invites v1 ( READ ) <!--- inherit from base service -->
+```js
+{
+    "method": "GET",
+    "url": `${serverIP}\api\v1\servers\:serverId\invites`
+}
+```
 
 ## Utils
 ### Request coffe v1
