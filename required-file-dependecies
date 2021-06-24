@@ -1,3 +1,0 @@
-### file dependencies ###
-.env                                <- contains some required properties
-/secret/firebase-admin-key.json     <- firebase admin authentication json file

@@ -1,3 +1,4 @@
 .env
-/secret
+/config
 /node_modules
+/coverage
