@@ -1,4 +1,5 @@
 .env
-/config
+/secrets
 /node_modules
 /coverage
+/dist

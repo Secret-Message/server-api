@@ -33,7 +33,7 @@
 ```js
 {
     "method": "post",
-    "url": `${serverIP}\api\v1\login`
+    "url": `${serverIP}/api/v1/login`
 }
 ```
 
@@ -41,7 +41,7 @@
 ```js
 {
     "method": "GET",
-    "url": `${serverIP}\api\v1\users\:userId`
+    "url": `${serverIP}/api/v1/users/:userId`
 }
 ```
 
@@ -49,7 +49,7 @@
 ```js
 {
     "method": "GET",
-    "url": `${serverIP}\api\v1\users\friendCode\:friendCode`
+    "url": `${serverIP}/api/v1/users/friendCode/:friendCode`
     "description": "This is only helper endpoint for easier searching for user all other operations still operate on userId exept of friendCode"
 }
 ```
@@ -68,7 +68,7 @@ Merged with logi / who am i
 ```js
 {
     "method": "PATCH",
-    "url": `${serverIP}\api\v1\users`
+    "url": `${serverIP}/api/v1/users`
 }
 ```
 
@@ -76,15 +76,15 @@ Merged with logi / who am i
 ```js
 {
     "method": "DELETE",
-    "url": `${serverIP}\api\v1\users`
+    "url": `${serverIP}/api/v1/users`
 }
 ```
 
-### Get shared users v1 ( READ )
+### Get shared friends v1 ( READ )
 ```js
 {
     "method": "GET",
-    "url": `${serverIP}\api\v1\users\:userId\sharedUsers`
+    "url": `${serverIP}/api/v1/users/:userId/sharedFriends`
 }
 ```
 
@@ -92,7 +92,7 @@ Merged with logi / who am i
 ```js
 {
     "method": "GET",
-    "url": `${serverIP}\api\v1\users\:userId\sharedServers`
+    "url": `${serverIP}/api/v1/users/:userId/sharedServers`
 }
 ```
 
@@ -101,7 +101,7 @@ Merged with logi / who am i
 ```js
 {
     "method": "GET",
-    "url": `${serverIP}\api\v1\users\friendsRequests`
+    "url": `${serverIP}/api/v1/users/friendsRequests`
 }
 ```
 
@@ -109,7 +109,7 @@ Merged with logi / who am i
 ```js
 {
     "method": "POST",
-    "url": `${serverIP}\api\v1\users\friendsRequests`
+    "url": `${serverIP}/api/v1/users/friendsRequests`
 }
 ```
 
@@ -117,7 +117,7 @@ Merged with logi / who am i
 ```js
 {
     "method": "POST",
-    "url": `${serverIP}\api\v1\users\friendsRequests\:requestId\accept`
+    "url": `${serverIP}/api/v1/users/friendsRequests/:requestId/accept`
 }
 ```
 
@@ -125,7 +125,7 @@ Merged with logi / who am i
 ```js
 {
     "method": "POST",
-    "url": `${serverIP}\api\v1\users\friendsRequests\:requestId\reject`
+    "url": `${serverIP}/api/v1/users/friendsRequests/:requestId/reject`
 }
 ```
 
@@ -138,7 +138,7 @@ Moved to User service
 ```js
 {
     "method": "POST",
-    "url": `${serverIP}\api\v1\servers`
+    "url": `${serverIP}/api/v1/servers`
 }
 ```
 
@@ -146,7 +146,7 @@ Moved to User service
 ```js
 {
     "method": "GET",
-    "url": `${serverIP}\api\v1\servers\:serverId`
+    "url": `${serverIP}/api/v1/servers/:serverId`
 }
 ```
 
@@ -154,7 +154,7 @@ Moved to User service
 ```js
 {
     "method": "PATCH",
-    "url": `${serverIP}\api\v1\servers\:serverId`
+    "url": `${serverIP}/api/v1/servers/:serverId`
 }
 ```
 
@@ -162,7 +162,7 @@ Moved to User service
 ```js
 {
     "method": "DELETE",
-    "url": `${serverIP}\api\v1\servers\:serverId`
+    "url": `${serverIP}/api/v1/servers/:serverId`
 }
 ```
 
@@ -171,7 +171,7 @@ Moved to User service
 ```js
 {
     "method": "GET",
-    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId`
+    "url": `${serverIP}/api/v1/servers/:serverId/categories/:categoryId`
 }
 ```
 
@@ -179,7 +179,7 @@ Moved to User service
 ```js
 {
     "method": "POST",
-    "url": `${serverIP}\api\v1\servers\:serverId\categories`
+    "url": `${serverIP}/api/v1/servers/:serverId/categories`
 }
 ```
 
@@ -187,7 +187,7 @@ Moved to User service
 ```js
 {
     "method": "PATCH",
-    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId`
+    "url": `${serverIP}/api/v1/servers/:serverId/categories/:categoryId`
 }
 ```
 
@@ -195,7 +195,7 @@ Moved to User service
 ```js
 {
     "method": "DELETE",
-    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId`
+    "url": `${serverIP}/api/v1/servers/:serverId/categories/:categoryId`
 }
 ```
 
@@ -204,7 +204,7 @@ Moved to User service
 ```js
 {
     "method": "POST",
-    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\channels`
+    "url": `${serverIP}/api/v1/servers/:serverId/categories/:categoryId/channels`
 }
 ```
 
@@ -212,7 +212,7 @@ Moved to User service
 ```js
 {
     "method": "GET",
-    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\channels\:channelId`
+    "url": `${serverIP}/api/v1/servers/:serverId/categories/:categoryId/channels/:channelId`
 }
 ```
 
@@ -220,7 +220,7 @@ Moved to User service
 ```js
 {
     "method": "PATCH",
-    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\channels\:channelId`
+    "url": `${serverIP}/api/v1/servers/:serverId/categories/:categoryId/channels/:channelId`
 }
 ```
 
@@ -228,7 +228,7 @@ Moved to User service
 ```js
 {
     "method": "DELETE",
-    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\channels\:channelId`
+    "url": `${serverIP}/api/v1/servers/:serverId/categories/:categoryId/channels/:channelId`
 }
 ```
 
@@ -237,7 +237,7 @@ Moved to User service
 ```js
 {
     "method": "POST",
-    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\channels\:channelId\messages`
+    "url": `${serverIP}/api/v1/servers/:serverId/categories/:categoryId/channels/:channelId/messages`
 }
 ```
 
@@ -245,7 +245,7 @@ Moved to User service
 ```js
 {
     "method": "GET",
-    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\channels\:channelId\messages?offset=<>&limit=<>`
+    "url": `${serverIP}/api/v1/servers/:serverId/categories/:categoryId/channels/:channelId/messages?offset=<>&limit=<>`
 }
 ```
 
@@ -253,7 +253,7 @@ Moved to User service
 ```js
 {
     "method": "PATCH",
-    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\channels\:channelId\messages\:messageId`
+    "url": `${serverIP}/api/v1/servers/:serverId/categories/:categoryId/channels/:channelId/messages/:messageId`
 }
 ```
 
@@ -261,7 +261,7 @@ Moved to User service
 ```js
 {
     "method": "DELETE",
-    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\channels\:channelId\messages\:messageId`
+    "url": `${serverIP}/api/v1/servers/:serverId/categories/:categoryId/channels/:channelId/messages/:messageId`
 }
 ```
 
@@ -270,7 +270,7 @@ Moved to User service
 ```js
 {
     "method": "POST",
-    "url": `${serverIP}\api\v1\servers\:serverId\roles`
+    "url": `${serverIP}/api/v1/servers/:serverId/roles`
 }
 ```
 
@@ -278,7 +278,7 @@ Moved to User service
 ```js
 {
     "method": "GET",
-    "url": `${serverIP}\api\v1\servers\:serverId\members\:memberId\roles`
+    "url": `${serverIP}/api/v1/servers/:serverId/members/:memberId/roles`
 }
 ```
 
@@ -286,7 +286,7 @@ Moved to User service
 ```js
 {
     "method": "GET",
-    "url": `${serverIP}\api\v1\servers\:serverId\roles`
+    "url": `${serverIP}/api/v1/servers/:serverId/roles`
 }
 ```
 
@@ -294,7 +294,7 @@ Moved to User service
 ```js
 {
     "method": "PATCH",
-    "url": `${serverIP}\api\v1\servers\:serverId\roles\:roleId`
+    "url": `${serverIP}/api/v1/servers/:serverId/roles/:roleId`
 }
 ```
 
@@ -302,7 +302,7 @@ Moved to User service
 ```js
 {
     "method": "DELETE",
-    "url": `${serverIP}\api\v1\servers\:serverId\roles\:roleId`
+    "url": `${serverIP}/api/v1/servers/:serverId/roles/:roleId`
 }
 ```
 
@@ -310,15 +310,15 @@ Moved to User service
 ```js
 {
     "method": "POST",
-    "url": `${serverIP}\api\v1\servers\:serverId\members\:memberId\roles`
+    "url": `${serverIP}/api/v1/servers/:serverId/members/:memberId/roles`
 }
 ```
 
-### Remove role from member v1 ( CREATE )
+### Remove role from member v1 ( DELETE )
 ```js
 {
-    "method": "POST",
-    "url": `${serverIP}\api\v1\servers\:serverId\members\:memberId\roles\:assignId`
+    "method": "DELETE",
+    "url": `${serverIP}/api/v1/servers/:serverId/members/:memberId/roles/:assignId`
 }
 ```
 
@@ -327,7 +327,7 @@ Moved to User service
 ```js
 {
     "method": "POST",
-    "url": `${serverIP}\api\v1\join\:serverId`
+    "url": `${serverIP}/api/v1/join/:serverId`
 }
 ```
 
@@ -335,7 +335,7 @@ Moved to User service
 ```js
 {
     "method": "DELETE",
-    "url": `${serverIP}\api\v1\users\servers\:serverId`
+    "url": `${serverIP}/api/v1/users/servers/:serverId`
 }
 ```
 
@@ -343,7 +343,7 @@ Moved to User service
 ```js
 {
     "method": "DELETE",
-    "url": `${serverIP}\api\v1\servers\:serverId\members\:memberId\ban`
+    "url": `${serverIP}/api/v1/servers/:serverId/members/:memberId/ban`
 }
 ```
 
@@ -351,7 +351,7 @@ Moved to User service
 ```js
 {
     "method": "DELETE",
-    "url": `${serverIP}\api\v1\servers\:serverId\members\:memberId\kick`
+    "url": `${serverIP}/api/v1/servers/:serverId/members/:memberId/kick`
 }
 ```
 
@@ -360,17 +360,17 @@ Moved to User service
 ```js
 {
     "method": "POST",
-    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\permissionsOwerwrites` ||
-    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\channels\:channelId\permissionsOwerwrites`
+    "url": `${serverIP}/api/v1/servers/:serverId/categories/:categoryId/permissionsOwerwrites` ||
+    "url": `${serverIP}/api/v1/servers/:serverId/categories/:categoryId/channels/:channelId/permissionsOwerwrites`
 }
 ```
 
 ### Get permission overwrites v1 ( READ )
 ```js
 {
-    "method": "POST",
-    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\permissionsOwerwrites` ||
-    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\channels\:channelId\permissionsOwerwrites`
+    "method": "GET",
+    "url": `${serverIP}/api/v1/servers/:serverId/categories/:categoryId/permissionsOwerwrites` ||
+    "url": `${serverIP}/api/v1/servers/:serverId/categories/:categoryId/channels/:channelId/permissionsOwerwrites`
 }
 ```
 
@@ -378,8 +378,8 @@ Moved to User service
 ```js
 {
     "method": "PATCH",
-    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\permissionsOwerwrites\:overWriteID` ||
-    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\channels\:channelId\permissionsOwerwrites\overWriteID`
+    "url": `${serverIP}/api/v1/servers/:serverId/categories/:categoryId/permissionsOwerwrites/:overwriteID` ||
+    "url": `${serverIP}/api/v1/servers/:serverId/categories/:categoryId/channels/:channelId/permissionsOwerwrites/overwriteID`
 }
 ```
 
@@ -387,8 +387,8 @@ Moved to User service
 ```js
 {
     "method": "DELETE",
-    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\permissionsOwerwrites\:overWriteID` ||
-    "url": `${serverIP}\api\v1\servers\:serverId\categories\:categoryId\channels\:channelId\permissionsOwerwrites\overWriteID`
+    "url": `${serverIP}/api/v1/servers/:serverId/categories/:categoryId/permissionsOwerwrites/:overwriteID` ||
+    "url": `${serverIP}/api/v1/servers/:serverId/categories/:categoryId/channels/:channelId/permissionsOwerwrites/overwriteID`
 }
 ```
 
@@ -397,7 +397,7 @@ Moved to User service
 ```js
 {
     "method": "POST",
-    "url": `${serverIP}\api\v1\servers\:serverId\invites`
+    "url": `${serverIP}/api/v1/servers/:serverId/invites`
 }
 ```
 
@@ -405,7 +405,7 @@ Moved to User service
 ```js
 {
     "method": "DELETE",
-    "url": `${serverIP}\api\v1\servers\:serverId\invites\:inviteId`
+    "url": `${serverIP}/api/v1/servers/:serverId/invites/:inviteId`
 }
 ```
 
@@ -413,7 +413,7 @@ Moved to User service
 ```js
 {
     "method": "GET",
-    "url": `${serverIP}\api\v1\servers\:serverId\invites`
+    "url": `${serverIP}/api/v1/servers/:serverId/invites`
 }
 ```
 

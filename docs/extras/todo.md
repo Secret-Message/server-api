@@ -30,3 +30,4 @@ Dodać allowNull i walidacje do modeli sequalize | ❌️
 Refactor authService ponieważ robie 2 razy tego samego selecta | ❌️
 Fix migrations for database beacouse models dont align with migrations | ❌️
 Fix jest with typescript | ❌️
+Replace models.js with models.ts or replace sequalize( SQL ORM ) with mongosee ( ORM for mongo DB NO SQL database) | ❌️
