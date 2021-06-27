@@ -1,9 +1,9 @@
-export interface IUser {
+import { IUser } from '../users/model';
+import { IRole } from '../roles/model';
+
+export interface IMember {
     _id?: String;
-    firebase_uid: String;
-    friend_code: Number;
-    avatar_url?: String;
-    join_date: Date;
-    status: String;
-    custom_status?: String;
+    isOwner: Boolean,
+    user: IUser
+    roles?: IRole[]
 }

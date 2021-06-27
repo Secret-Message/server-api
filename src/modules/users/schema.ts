@@ -8,7 +8,9 @@ const schema = new Schema({
     avatar_url: String,
     join_date: { type: Date, default: Date.now },
     status: { type: String, default: "online" },
-    custom_status: String
+    custom_status: String,
+    friend_requests: [ { type: Schema.Types.ObjectId, ref: 'users' } ],
+    friends: [ { type: Schema.Types.ObjectId, ref: 'users' } ]
 });
 
 export default mongoose.model('users', schema);

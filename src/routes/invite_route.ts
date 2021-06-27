@@ -10,15 +10,15 @@ export class InviteRoutes {
 
     public route( app: Application ) {
         
-        app.post('/api/v1/servers/:serverId/invites', this.auth_controller.loggedIn(), (req: Request, res: Response) => {
+        app.post('/api/v1/servers/:serverId/invites', this.auth_controller.loggedIn, (req: Request, res: Response) => {
             this.invite_controller.createInvite(req, res);
         });
 
-        app.delete('/api/v1/servers/:serverId/invites/:inviteId', this.auth_controller.loggedIn(), (req: Request, res: Response) => {
+        app.delete('/api/v1/servers/:serverId/invites/:inviteId', this.auth_controller.loggedIn, (req: Request, res: Response) => {
             this.invite_controller.deleteInvite(req, res);
         });
 
-        app.get('/api/v1/servers/:serverId/invites', this.auth_controller.loggedIn(), (req: Request, res: Response) => {
+        app.get('/api/v1/servers/:serverId/invites', this.auth_controller.loggedIn, (req: Request, res: Response) => {
             this.invite_controller.getInvitesInServer(req, res);
         });
 

@@ -4,8 +4,7 @@ import { IUser } from '../modules/users/model';
 import UserService from '../modules/users/service';
 import { admin } from '../utils/firebase.js';
 import * as jwt from 'jsonwebtoken';
-import { IGetUserAuth, ISetUserAuth } from '../modules/decoded/model'
-import e = require('express');
+import { CustomRequest } from '../modules/common/model'
 
 export class AuthController {
 
@@ -56,7 +55,7 @@ export class AuthController {
         }
     }
 
-    public loggedIn(req: IGetUserAuth, res: Response, next: NextFunction ) {
+    public loggedIn(req: CustomRequest, res: Response, next: NextFunction ) {
         const cookies = req.cookies || req.headers.cookie;
 
         if( cookies ){

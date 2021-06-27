@@ -10,19 +10,19 @@ export class ChannelRoutes {
 
     public route( app: Application ) {
         
-        app.get('/api/v1/servers/:serverId/categories/:categoryId/channels/:channelId', this.auth_controller.loggedIn(), (req: Request, res: Response) => {
+        app.get('/api/v1/servers/:serverId/categories/:categoryId/channels/:channelId', this.auth_controller.loggedIn, (req: Request, res: Response) => {
             this.channel_controller.getChannel(req, res);
         });
 
-        app.post('/api/v1/servers/:serverId/categories/:categoryId/channels', this.auth_controller.loggedIn(), (req: Request, res: Response) => {
+        app.post('/api/v1/servers/:serverId/categories/:categoryId/channels', this.auth_controller.loggedIn, (req: Request, res: Response) => {
             this.channel_controller.createChannel(req, res);
         });
 
-        app.patch('/api/v1/servers/:serverId/categories/:categoryId/channels/:channelId', this.auth_controller.loggedIn(), (req: Request, res: Response) => {
+        app.patch('/api/v1/servers/:serverId/categories/:categoryId/channels/:channelId', this.auth_controller.loggedIn, (req: Request, res: Response) => {
             this.channel_controller.updateChannel(req, res);
         });
 
-        app.delete('/api/v1/servers/:serverId/categories/:categoryId/channels/:channelId', this.auth_controller.loggedIn(), (req: Request, res: Response) => {
+        app.delete('/api/v1/servers/:serverId/categories/:categoryId/channels/:channelId', this.auth_controller.loggedIn, (req: Request, res: Response) => {
             this.channel_controller.deleteChannel(req, res);
         });
         

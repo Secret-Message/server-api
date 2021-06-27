@@ -10,7 +10,7 @@ const schema = new Schema({
     invites: [ { type: Schema.Types.ObjectId, ref: 'invites' } ],
     roles: [ { type: Schema.Types.ObjectId, ref: 'roles' } ],
     categories: [ { type: Schema.Types.ObjectId, ref: 'categories' } ],
-    bans: [ { type: Schema.Types.ObjectId, ref: 'bans' } ]
+    bans: [ { type: Schema.Types.ObjectId, ref: 'users' } ]
 });
 
 export default mongoose.model('servers', schema);
