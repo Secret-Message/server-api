@@ -1,6 +1,6 @@
 import { Application, Request, Response } from 'express';
 import { CategoryController } from '../controllers/categoryController';
-import { AuthController } from '../controllers/authController';
+import { AuthController } from '../controllers/AuthController';
 
 
 export class CategoryRoutes {

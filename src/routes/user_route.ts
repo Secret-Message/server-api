@@ -1,7 +1,7 @@
 import { Application, Request, Response } from 'express';
-import { UserController } from '../controllers/userController';
-import { AuthController } from '../controllers/authController';
-
+import { UserController } from '../controllers/UserController';
+import { AuthController } from '../controllers/AuthController';
+import { CustomRequest } from '../interfaces/ICommon'
 
 export class UserRoutes {
 
@@ -22,7 +22,15 @@ export class UserRoutes {
             this.user_controller.getUserByFriendCode(req, res);
         });
 
-        app.patch('/api/v1/users', this.auth_controller.loggedIn, (req: Request, res: Response) => {
+        app.get('/api/v1/users/me/servers', this.auth_controller.loggedIn, (req: CustomRequest, res: Response) => {
+            this.user_controller.getCurrentUserServers(req, res);
+        });
+
+        app.get('/api/v1/users/me/friends', this.auth_controller.loggedIn, (req: CustomRequest, res: Response) => {
+            this.user_controller.getCurrentUserFriends(req, res);
+        });
+
+        app.patch('/api/v1/users', this.auth_controller.loggedIn, (req: CustomRequest, res: Response) => {
             this.user_controller.updateUser(req, res);
         });
 

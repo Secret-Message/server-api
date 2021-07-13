@@ -1,6 +1,6 @@
 import { Application, Request, Response } from 'express';
 import { ChannelController } from '../controllers/channelController';
-import { AuthController } from '../controllers/authController';
+import { AuthController } from '../controllers/AuthController';
 
 
 export class ChannelRoutes {

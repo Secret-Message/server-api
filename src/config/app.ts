@@ -11,7 +11,7 @@ import { CommonRoutes } from "../routes/common_route";
 // import { MessageRoutes } from "../routes/message_route";
 // import { PermissionOverwriteRoutes } from "../routes/permission_overwrite_route";
 // import { RoleRoutes } from "../routes/role_route";
-// import { ServerRoutes } from "../routes/server_route";
+import { ServerRoutes } from "../routes/server_route";
 import { UserRoutes } from "../routes/user_route";
 import { UtilRoutes } from "../routes/util_route"
 
@@ -28,7 +28,7 @@ class App {
     // private message_routes: MessageRoutes = new MessageRoutes();
     // private permission_overwrite_routes: PermissionOverwriteRoutes = new PermissionOverwriteRoutes();
     // private role_routes: RoleRoutes = new RoleRoutes();
-    // private server_routes: ServerRoutes = new ServerRoutes();
+    private server_routes: ServerRoutes = new ServerRoutes();
     private user_routes: UserRoutes = new UserRoutes();
     private util_routes: UtilRoutes = new UtilRoutes();
 
@@ -45,7 +45,7 @@ class App {
         // this.message_routes.route( this.app );
         // this.permission_overwrite_routes.route( this.app );
         // this.role_routes.route( this.app );
-        // this.server_routes.route( this.app );
+        this.server_routes.route( this.app );
         this.user_routes.route( this.app );
         this.util_routes.route( this.app );
         this.common_routes.route( this.app );

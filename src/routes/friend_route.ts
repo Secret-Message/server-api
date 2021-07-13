@@ -1,6 +1,6 @@
 import { Application, Request, Response } from 'express';
 import { FriendController } from '../controllers/friendController';
-import { AuthController } from '../controllers/authController';
+import { AuthController } from '../controllers/AuthController';
 
 
 export class FriendRoutes {

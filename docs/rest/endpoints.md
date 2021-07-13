@@ -55,13 +55,19 @@
 ```
 
 ### get current user servers v1 ( READ )
-```
-Merged with logi / who am i
+```js
+{
+    "method": "GET",
+    "url": `${serverIP}/api/v1/users/me/servers`
+}
 ```
 
 ### get current user friends v1 ( READ )
-```
-Merged with logi / who am i
+```js
+{
+    "method": "GET",
+    "url": `${serverIP}/api/v1/users/me/friends`
+}
 ```
 
 ### modify current user v1 ( UPDATE ) <!--- inherit from base service -->
@@ -129,7 +135,7 @@ Merged with logi / who am i
 }
 ```
 
-### Finde user by friend code v1
+### Find user by friend code v1
 ```
 Moved to User service
 ```
@@ -167,6 +173,14 @@ Moved to User service
 ```
 
 ## Categories
+### Get categories by serverId v1 ( READ )
+```js
+{
+    "method": "GET",
+    "url": `${serverIP}/api/v1/servers/:serverId/categories`
+}
+```
+
 ### Get category by id v1 ( READ ) <!--- inherit from base service -->
 ```js
 {
@@ -200,6 +214,14 @@ Moved to User service
 ```
 
 ## Channels
+### Get channels by categoryId v1 ( READ )
+```js
+{
+    "method": "GET",
+    "url": `${serverIP}/api/v1/servers/:serverId/categories/:categoryId/channels`
+}
+```
+
 ### Create channe v1 ( CREATE ) <!--- inherit from base service -->
 ```js
 {
@@ -352,6 +374,14 @@ Moved to User service
 {
     "method": "DELETE",
     "url": `${serverIP}/api/v1/servers/:serverId/members/:memberId/kick`
+}
+```
+
+### Unban member v1 ( DELETE )
+```js
+{
+    "method": "DELETE",
+    "url": `${serverIP}/api/v1/servers/:serverId/bans/:userId`
 }
 ```
 
