@@ -22,14 +22,13 @@ export class UserController {
         notWorkingYet(null, res)
     }
 
-    public deleteUser(req: Request, res: Response ) {
-        this.user_service.delete(req.params.userId, 
+    public deleteUser(req: CustomRequest, res: Response ) {
+        this.user_service.delete(req.decoded.userId, 
             (err: any, user_data: IUser) => {
             if (err) {
                 mongoError(err, res);
             }else {
                 successResponse('User deleted', user_data, res);
-                
             }
         })
     }

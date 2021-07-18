@@ -4,4 +4,9 @@ package-lock.json
 /dist
 /data
 /docs
+/secrets
+README.md
+node_modules
+nodemon.json
+docker-compose.yml.template
 .env

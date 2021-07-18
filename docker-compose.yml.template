@@ -1,0 +1,27 @@
+version: "3.8"
+services: 
+    api:
+        container_name: secret-message-api
+        environment:
+            - SERVER_TOKEN={ server-token any random long string }
+            - MONGO_URI=mongodb://mongo:{ mongodb-container-port }/secret-message
+            - PORT=3000
+        volumes:
+            - { path to firebase-admin-key.json on your drive }:/usr/secret-message/secrets/firebase-admin-key.json:ro
+        image: frankoslaw/secret-message-api
+        restart: always
+        build: .
+        ports:
+            - "{ server-api-outside-port }:3000"
+        links:
+            - mongo
+        depends_on:
+            - mongo
+          
+    mongo:
+        container_name: mongo
+        image: mongo
+        volumes:
+            - ./data:/data/db
+        ports:
+            - '{ mongodb-outside-port }:{ mongodb-container-port }'

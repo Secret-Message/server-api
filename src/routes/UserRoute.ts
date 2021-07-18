@@ -34,7 +34,7 @@ export class UserRoutes {
             this.user_controller.updateUser(req, res);
         });
 
-        app.delete('/api/v1/users', this.auth_controller.loggedIn, (req: Request, res: Response) => {
+        app.delete('/api/v1/users', this.auth_controller.loggedIn, (req: CustomRequest, res: Response) => {
             this.user_controller.deleteUser(req, res);
         });
 

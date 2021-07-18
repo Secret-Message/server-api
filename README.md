@@ -10,4 +10,10 @@ Przydatne linki:
 
 DM i server są teraz tym samym jedyna różnica między nimi to to że DM jest read-only i nie można na nim tworzyć ani usuwać kanałów
 
-**Frankoslaw: To jest testowa wersja, jeżeli nie działa po prostu zignoruje tego brancha**
+DOCKER:
+Aby uruchomić kontener dockera zmień rozszerzenie z docker-compose.yml.template na docker-compose.yml i zastąp wszystkie { wartości } odpowiadającymi im wartościami np { api-port } na 3000. Upewnij się że masz zainstalowane docker i docker-compose. Aby uruchomić i połączyć ze sobą wszystkie kontenery automatycznie użyj komendy:
+```bash
+docker-compose up
+```
+
+**Frankoslaw: To jest bardziej stabilna wersja api, ale cały czas jak coś się zepsuje weź wersję z brancha dev **
