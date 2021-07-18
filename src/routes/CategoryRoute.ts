@@ -1,5 +1,5 @@
 import { Application, Request, Response } from 'express';
-import { CategoryController } from '../controllers/categoryController';
+import { CategoryController } from '../controllers/CategoryController';
 import { AuthController } from '../controllers/AuthController';
 
 

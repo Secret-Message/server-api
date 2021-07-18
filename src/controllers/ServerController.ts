@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { insufficientParameters, mongoError, successResponse, failureResponse } from '../services/CommonService';
+import { insufficientParameters, mongoError, successResponse, failureResponse, notWorkingYet } from '../services/CommonService';
 import { CustomRequest } from '../interfaces/ICommon';
 import ServerService from '../services/ServerService';
 import MemberService from '../services/MemberService';
@@ -13,31 +13,19 @@ export class ServerController {
     private member_service: MemberService = new MemberService();
 
     public createServer(req: CustomRequest, res: Response ) {
-        const { userId } = req.decoded
-
-        if(req.body.name){
-        }else{
-            insufficientParameters(res);
-        }
+        notWorkingYet(null, res)
     }
 
     public getServer(req: CustomRequest, res: Response ) {
-        if(req.params.serverId){
-        }else{
-            insufficientParameters(res);
-        }
+        notWorkingYet(null, res)
     }
 
     public updateServer(req: CustomRequest, res: Response ) {
-        if( req.params.serverId &&
-            req.body.name || req.body.icon_url ){
-        }else{
-            insufficientParameters(res);
-        }
+        notWorkingYet(null, res)
     }
 
     public deleteServer(req: CustomRequest, res: Response ) {
-        
+        notWorkingYet(null, res)
     }
 
 

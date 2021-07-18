@@ -1,5 +1,5 @@
 import { Application, Request, Response } from 'express';
-import { MessageController } from '../controllers/messageController';
+import { MessageController } from '../controllers/MessageController';
 import { AuthController } from '../controllers/AuthController';
 
 

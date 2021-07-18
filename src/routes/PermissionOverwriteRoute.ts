@@ -1,5 +1,5 @@
 import { Application, Request, Response } from 'express';
-import { PermissionOverwriteController } from '../controllers/permissionOverwriteController';
+import { PermissionOverwriteController } from '../controllers/PermissionOverwriteController';
 import { AuthController } from '../controllers/AuthController';
 
 

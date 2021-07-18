@@ -1,5 +1,5 @@
 import { Application, Request, Response } from 'express';
-import { MemberController } from '../controllers/memberController';
+import { MemberController } from '../controllers/MemberController';
 import { AuthController } from '../controllers/AuthController';
 
 

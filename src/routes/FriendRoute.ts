@@ -1,5 +1,5 @@
 import { Application, Request, Response } from 'express';
-import { FriendController } from '../controllers/friendController';
+import { FriendController } from '../controllers/FriendController';
 import { AuthController } from '../controllers/AuthController';
 
 

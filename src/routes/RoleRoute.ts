@@ -1,5 +1,5 @@
 import { Application, Request, Response } from 'express';
-import { RoleController } from '../controllers/roleController';
+import { RoleController } from '../controllers/RoleController';
 import { AuthController } from '../controllers/AuthController';
 
 

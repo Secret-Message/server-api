@@ -1,5 +1,5 @@
 import { Application, Request, Response } from 'express';
-import { ChannelController } from '../controllers/channelController';
+import { ChannelController } from '../controllers/ChannelController';
 import { AuthController } from '../controllers/AuthController';
 
 

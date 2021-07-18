@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { insufficientParameters, mongoError, successResponse, failureResponse } from '../services/CommonService';
 import { IUser } from '../interfaces/IUser';
 import UserService from '../services/UserService';
-import { admin } from '../utils/firebase.js';
+import { admin } from '../utils/firebase';
 import * as jwt from 'jsonwebtoken';
 import { CustomRequest } from '../interfaces/ICommon'
 
