@@ -67,9 +67,9 @@ export class UserController {
     }
 
     public getCurrentUserServers(req: CustomRequest, res: Response ) {
-        this.member_service.getMany({ 
+        this.member_service.getManyPopulate({ 
             user: req.decoded.userId
-        }, (err: any, member_data: IMember) => {
+        }, 'server', (err: any, member_data: IMember) => {
             if (err) {
                 mongoError(err, res);
             }else {

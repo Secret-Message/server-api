@@ -14,6 +14,10 @@ export default class ChannelService implements CRUD{
         channels.findOne(query, callback);
     }
 
+    public getMany(query: any, callback: any) {
+        channels.find(query, callback);
+    }
+
     public update(params: IChannel, callback: any) {
         const query = { _id: params._id };
         channels.findOneAndUpdate(query, params, callback);

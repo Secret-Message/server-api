@@ -10,8 +10,12 @@ export class CategoryRoutes {
 
     public route( app: Application ) {
         
+        app.get('/api/v1/servers/:serverId/categories', this.auth_controller.loggedIn, (req: Request, res: Response) => {
+            this.category_controller.getCategories(req, res);
+        });
+
         app.get('/api/v1/servers/:serverId/categories/:categoryId', this.auth_controller.loggedIn, (req: Request, res: Response) => {
-            this.category_controller.getCategory(req, res);
+            this.category_controller.getCategoryById(req, res);
         });
 
         app.post('/api/v1/servers/:serverId/categories', this.auth_controller.loggedIn, (req: Request, res: Response) => {

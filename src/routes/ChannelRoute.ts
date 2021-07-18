@@ -9,9 +9,13 @@ export class ChannelRoutes {
     private auth_controller: AuthController = new AuthController();
 
     public route( app: Application ) {
+
+        app.get('/api/v1/servers/:serverId/categories/:categoryId/channels', this.auth_controller.loggedIn, (req: Request, res: Response) => {
+            this.channel_controller.getChannels(req, res);
+        });
         
         app.get('/api/v1/servers/:serverId/categories/:categoryId/channels/:channelId', this.auth_controller.loggedIn, (req: Request, res: Response) => {
-            this.channel_controller.getChannel(req, res);
+            this.channel_controller.getChannelById(req, res);
         });
 
         app.post('/api/v1/servers/:serverId/categories/:categoryId/channels', this.auth_controller.loggedIn, (req: Request, res: Response) => {

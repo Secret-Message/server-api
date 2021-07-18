@@ -17,6 +17,13 @@ export default class MemberService implements CRUD {
         members.find(query, callback);
     }
 
+    public getManyPopulate(query: any, populate: any, callback: any) {
+        members
+            .find(query)
+            .populate(populate)
+            .exec(callback)
+    }
+
     public update(params: IMember, callback: any) {
         const query = { _id: params._id };
         members.findOneAndUpdate(query, params, callback);

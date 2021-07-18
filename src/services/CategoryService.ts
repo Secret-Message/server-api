@@ -14,6 +14,10 @@ export default class CategoryService implements CRUD {
         categories.findOne(query, callback);
     }
 
+    public getMany(query: any, callback: any) {
+        categories.find(query, callback);
+    }
+
     public update(params: ICategory, callback: any) {
         const query = { _id: params._id };
         categories.findOneAndUpdate(query, params, callback);

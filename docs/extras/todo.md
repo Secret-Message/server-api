@@ -26,3 +26,7 @@ Naprawić status requestów bo aktualnie zawsze w przypdaku błędu zwracam 403(
 Install docsify as dev dependency | ✅️
 Replace models.js with models.ts or replace sequalize( SQL ORM ) with mongosee ( ORM for mongo DB NO SQL database) | ✅️
 Add indexes to mongoDB | ❌️
+Exclude __V from mongoDb results | ❌️
+Add cascade deleting that mean if serwer was deleted members also will be deleted | ❌️
+Replace getManyPopulate to pipeline find -> populate -> exec | ❌️
+Add coherensce to services | ❌️
