@@ -1,6 +1,7 @@
 import { Application, Request, Response } from 'express';
 import { MessageController } from '../controllers/MessageController';
 import { AuthController } from '../controllers/AuthController';
+import { CustomRequest } from 'interfaces/ICommon';
 
 
 export class MessageRoutes {
@@ -14,7 +15,7 @@ export class MessageRoutes {
             this.message_controller.getMessages(req, res);
         });
 
-        app.post('/api/v1/servers/:serverId/categories/:categoryId/channels/:channelId/messages', this.auth_controller.loggedIn, (req: Request, res: Response) => {
+        app.post('/api/v1/servers/:serverId/categories/:categoryId/channels/:channelId/messages', this.auth_controller.loggedIn, (req: CustomRequest, res: Response) => {
             this.message_controller.createMessage(req, res);
         });
 

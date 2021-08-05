@@ -6,7 +6,7 @@ const schema = new Schema({
     channel: { type: Schema.Types.ObjectId, ref: 'channels' },
     author: { type: Schema.Types.ObjectId, ref: 'members' },
     content: String,
-    sendDate: Date,
+    sendDate: { type: Date, default: Date.now },
     parentMessage: { type: Schema.Types.ObjectId, ref: 'messages' }
 });
 

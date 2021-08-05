@@ -30,3 +30,4 @@ Exclude __V from mongoDb results | ❌️
 Add cascade deleting that mean if serwer was deleted members also will be deleted | ❌️
 Replace getManyPopulate to pipeline find -> populate -> exec | ❌️
 Add coherensce to services | ❌️
+Replace if(value) to if(value != null) beacouse it detects 0 as no parameter | ❌️

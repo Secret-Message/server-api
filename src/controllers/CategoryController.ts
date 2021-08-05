@@ -78,7 +78,7 @@ export class CategoryController {
                 }else {
                     const category_params: ICategory = {
                         _id: req.params.categoryId,
-                        server: req.body.server,
+                        server: category_data.server,
                         name: req.body.name ? req.body.name : category_data.name,
                         number: req.body.number ? req.body.number : category_data.number,
                     };

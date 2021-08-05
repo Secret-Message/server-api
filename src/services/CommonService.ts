@@ -4,7 +4,7 @@ import { CustomResponse, response_status_codes } from "../interfaces/ICommon";
 export interface CRUD {
     create: (params: any, callback: Function) => void;
     getOne: (query: any, callback: Function) => void;
-    getMany?: (query: any, callback: Function) => void;
+    getMany?: (query: any, callback: Function,  limit?: number, skip?: number) => void;
     update: (params: any, callback: Function) => void;
     delete: (_id: String, callback: Function) => void;
 }

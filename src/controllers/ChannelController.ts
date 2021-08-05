@@ -50,7 +50,7 @@ export class ChannelController {
 
     public createChannel(req: Request, res: Response ) {
         if( req.params.serverId  && req.params.categoryId &&
-            req.body.name && req.body.voice ) {
+            req.body.name && req.body.voice != null ) {
             const channel_params: IChannel = {
                 category: req.params.categoryId,
                 name: req.body.name,

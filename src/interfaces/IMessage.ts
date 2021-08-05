@@ -3,6 +3,6 @@ export interface IMessage {
     channel: String;
     author: String;
     content: String;
-    sendDate: Date;
+    sendDate?: Date;
     parentMessage?: String
 }

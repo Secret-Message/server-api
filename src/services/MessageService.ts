@@ -13,6 +13,10 @@ export default class MessageService implements CRUD {
         messages.findOne(query, callback);
     }
 
+    public getMany(query: any, callback: any, limit: number, skip: number) {
+        messages.find(query, callback).skip(skip).limit(limit);
+    }
+
     public update(params: IMessage, callback: any) {
         const query = { _id: params._id };
         messages.findOneAndUpdate(query, params, callback);
